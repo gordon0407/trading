@@ -81,10 +81,10 @@ def apply_switch_signals(df):
         downs = down_count.iloc[i]
 
         # 注意：原本 if 條件括號優先次序好易出事，呢度已經加括號避免誤判
-        if (current_state != "Long") and ((m_curr > m5_curr) or ((m5_curr - m_curr) > 2)) and (ups >= 4):
+        if (current_state != "Long") and ((m_curr >= m5_curr) or ((m5_curr - m_curr) >= 2)) and (downs >= 4):
             signals[i] = "BUY"
             current_state = "Long"
-        elif (current_state != "Short") and (m_curr < m5_curr) and (downs >= 3):
+        elif (current_state != "Short") and ((m_curr =< m5_curr) or ((m_curr - m5_curr) >= 2)) and (ups >= 3):
             signals[i] = "SELL"
             current_state = "Short"
 
